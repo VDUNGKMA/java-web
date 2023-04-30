@@ -1,0 +1,15 @@
+digraph "com.laptrinhweb:new-jdbc:war:1.0" { 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "javax.servlet:jsp-api:jar:2.0:provided" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "javax.servlet:javax.servlet-api:jar:3.1.0:provided" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "jstl:jstl:jar:1.2:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "opensymphony:sitemesh:jar:2.4.2:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "mysql:mysql-connector-java:jar:8.0.13:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "org.jboss.weld.servlet:weld-servlet:jar:2.4.8.Final:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "com.fasterxml.jackson.core:jackson-core:jar:2.9.6:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "com.fasterxml.jackson.core:jackson-databind:jar:2.9.6:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "com.fasterxml.jackson.core:jackson-annotations:jar:2.9.6:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13:compile" ; 
+	"com.laptrinhweb:new-jdbc:war:1.0" -> "org.codehaus.jackson:jackson-core-asl:jar:1.9.13:compile" ; 
+	"javax.servlet:jsp-api:jar:2.0:provided" -> "javax.servlet:servlet-api:jar:2.4:provided" ; 
+	"mysql:mysql-connector-java:jar:8.0.13:compile" -> "com.google.protobuf:protobuf-java:jar:3.6.1:compile" ; 
+ } 
