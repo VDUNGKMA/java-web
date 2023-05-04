@@ -5,6 +5,7 @@ import java.util.List;
 import com.laptrinhweb.dao.INewDao;
 import com.laptrinhweb.mapper.NewDaoMapper;
 import com.laptrinhweb.model.NewsModel;
+import com.laptrinhweb.paging.Pageble;
 
 public class NewDao extends AbstractDao<NewsModel> implements INewDao{
 	
@@ -55,9 +56,14 @@ public class NewDao extends AbstractDao<NewsModel> implements INewDao{
 	}
 
 	@Override
-	public List<NewsModel> findAll(int offset, int limit) {
-		String sql="select * from news Limit ?,?";
-		return query(sql, new NewDaoMapper(),offset,limit);
+	public List<NewsModel> findAll(Pageble pageble) {
+		StringBuilder sql=new StringBuilder("SELECT * FROM news ");
+		if(pageble.getSorter() != null) {
+			sql.append("order by "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+" LIMIT "+pageble.getOffset()+", "+pageble.getLimit()+" ");
+		} else {
+			sql.append("LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+		}		
+		return query(sql.toString(), new NewDaoMapper());
 		
 	}
 

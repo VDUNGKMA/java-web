@@ -42,8 +42,10 @@
 								<ul class="pagination" id="pagination"></ul>
 									<!-- để controller nhận đc giá trị page và maxPageItem thì ta cần khai báo biến name 
 									id là dùng để cho funtion phân trang điều khiển -->
-								<input type="hidden" value="" id="page" name="page" /> <input
-									type="hidden" value="" id="maxPageItem" name="maxPageItem" />
+									<input type="hidden" value="" id="page" name="page" /> 
+									<input type="hidden" value="" id="maxPageItem" name="maxPageItem" />
+									<input type="hidden" value="" id="sortName" name="sortName"/>
+									<input type="hidden" value="" id="sortBy" name="sortBy"/>
 							</div>
 						</div>
 					</div>
@@ -54,7 +56,7 @@
 
 	<!-- /.main-content -->
 	<script>
-
+/* jquery phân trang để add giá trị cho <input > (chính là value) ở trên thì cần có cái cờ(flag) id để truyền giá trị value vào. */  
 	var totalPages = ${model.totalPage};
 	var currentPage = ${model.page};
 	var limit = 2;
@@ -67,6 +69,8 @@
 					if (currentPage != page) {
 						$('#maxPageItem').val(limit);
 						$('#page').val(page);
+						$('#sortName').val('title');
+						$('#sortBy').val('desc');
 						$('#formSubmit').submit();
 					}
 				}

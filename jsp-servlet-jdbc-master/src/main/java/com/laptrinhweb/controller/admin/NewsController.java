@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.laptrinhweb.constant.SystemConstant;
 import com.laptrinhweb.model.NewsModel;
+import com.laptrinhweb.paging.PageRequest;
+import com.laptrinhweb.paging.Pageble;
 import com.laptrinhweb.service.INewService;
+import com.laptrinhweb.sort.Sorter;
 import com.laptrinhweb.utils.FormUtil;
 
 @WebServlet(urlPatterns= {"/admin-news"})
@@ -26,8 +29,9 @@ public class NewsController  extends HttpServlet{
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
 			NewsModel model =FormUtil.toModel(NewsModel.class, req);
-			int offset=(model.getPage() -1) * model.getMaxPageItem();
-			model.setListResult(newService.findAll(offset, model.getMaxPageItem()));
+			//khi new một đối tượng mà có interface trong đó ta new class tương ứng với interface đó
+			Pageble pageble =new PageRequest(model.getPage(),model.getMaxPageItem(),new Sorter(model.getSortName(),model.getSortBy()));
+			model.setListResult(newService.findAll(pageble));
 			model.setTotalItem(newService.getTotalItem());
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			req.setAttribute(SystemConstant.MODEL, model);

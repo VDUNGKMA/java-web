@@ -1,3 +1,7 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
+ 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -13,12 +17,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a>
+                    <li><a href="#about">Trang chủ</a>
                     </li>
-                    <li><a href="#services">Services</a>
+                    <li><a href='<c:url value="/dang-nhap?action=login" />' >Đăng nhập</a>
                     </li>
-                    <li><a href="#contact">Contact</a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
