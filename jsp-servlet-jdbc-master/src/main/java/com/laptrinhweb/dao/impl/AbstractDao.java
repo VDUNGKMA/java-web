@@ -8,17 +8,23 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.laptrinhweb.dao.IGenericDao;
 import com.laptrinhweb.mapper.IRowMapper;
+import com.sun.org.apache.xml.internal.utils.res.XResourceBundle;
 
 public class AbstractDao<T> implements IGenericDao<T> {
+	/*Dùng resourcebundle để lấy ra các thông tin trong file (ví dụ như ví dụ dưới đây là db.properties) lấy ra drivername,url,user và password*/
+	ResourceBundle myResources =
+			ResourceBundle.getBundle("db");
+
 	public Connection getConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/new_servlet";
-			String user = "root";
-			String password = "Dung050402@";
+			Class.forName(myResources.getString("driverName"));
+			String url = myResources.getString("url");
+			String user = myResources.getString("user");
+			String password = myResources.getString("password");
 			return DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 

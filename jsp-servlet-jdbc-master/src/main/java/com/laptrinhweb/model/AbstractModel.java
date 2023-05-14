@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractModel<T> {
-	private long id;
+	private Long id;
 	private Timestamp createdDate;
 	private Timestamp modifiedDate;
 	private String createdBy;
@@ -18,21 +18,20 @@ public class AbstractModel<T> {
 	private int totalItem;
 	private String sortName; // sắp xếp theo trường nào
 	private String sortBy;   // sắp theo chiều nào(tăng dần hay giảm dần)
-	
+	private String type;
+	public String getType() {
+		return type;
+	}
 
-	public long getId() {
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public Long getId() {
 		return id;
 	}
-	
-	public List<T> getListResult() {
-		return listResult;
-	}
-
-	public void setListResult(List<T> listResult) {
-		this.listResult = listResult;
-	}
-
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Timestamp getCreatedDate() {
@@ -65,55 +64,48 @@ public class AbstractModel<T> {
 	public void setIds(long[] ids) {
 		this.ids = ids;
 	}
-
+	public List<T> getListResult() {
+		return listResult;
+	}
+	public void setListResult(List<T> listResult) {
+		this.listResult = listResult;
+	}
 	public int getPage() {
 		return page;
 	}
-
 	public void setPage(int page) {
 		this.page = page;
 	}
-
 	public int getMaxPageItem() {
 		return maxPageItem;
 	}
-
 	public void setMaxPageItem(int maxPageItem) {
 		this.maxPageItem = maxPageItem;
 	}
-
 	public int getTotalPage() {
 		return totalPage;
 	}
-
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-
 	public int getTotalItem() {
 		return totalItem;
 	}
-
 	public void setTotalItem(int totalItem) {
 		this.totalItem = totalItem;
 	}
-
 	public String getSortName() {
 		return sortName;
 	}
-
 	public void setSortName(String sortName) {
 		this.sortName = sortName;
 	}
-
 	public String getSortBy() {
 		return sortBy;
 	}
-
 	public void setSortBy(String sortBy) {
 		this.sortBy = sortBy;
 	}
-
 	
 
 	

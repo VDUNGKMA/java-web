@@ -6,6 +6,7 @@ import com.laptrinhweb.dao.INewDao;
 import com.laptrinhweb.mapper.NewDaoMapper;
 import com.laptrinhweb.model.NewsModel;
 import com.laptrinhweb.paging.Pageble;
+import org.apache.commons.lang.StringUtils;
 
 public class NewDao extends AbstractDao<NewsModel> implements INewDao{
 	
@@ -58,7 +59,7 @@ public class NewDao extends AbstractDao<NewsModel> implements INewDao{
 	@Override
 	public List<NewsModel> findAll(Pageble pageble) {
 		StringBuilder sql=new StringBuilder("SELECT * FROM news ");
-		if(pageble.getSorter() != null) {
+		if(pageble.getSorter() != null && StringUtils.isNotBlank(pageble.getSorter().getSortName()) && StringUtils.isNotBlank(pageble.getSorter().getSortBy()))  {
 			sql.append("order by "+pageble.getSorter().getSortName()+" "+pageble.getSorter().getSortBy()+" LIMIT "+pageble.getOffset()+", "+pageble.getLimit()+" ");
 		} else {
 			sql.append("LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");

@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.laptrinhweb.model.NewsModel;
+import com.laptrinhweb.model.UserModel;
 import com.laptrinhweb.service.INewService;
 import com.laptrinhweb.utils.HttpUtil;
+import com.laptrinhweb.utils.SessionUtil;
 @WebServlet(urlPatterns= {"/api-admin-news"})
 public class NewAPI  extends HttpServlet  {
 
@@ -28,6 +30,8 @@ public class NewAPI  extends HttpServlet  {
 		resp.setContentType("application/json");
 		super.doPost(req, resp);
 	 NewsModel newsmodel=HttpUtil.of(req.getReader()).toModel(NewsModel.class); //biến đổi từ json-->string-->object
+	 UserModel usermodel= (UserModel) SessionUtil.getIntance().getValue(req, "USERMODEL"); //truy cập vào usemodel lấy data
+	 newsmodel.setCreatedBy(usermodel.getUserName()); // set createdby 
 	 newsmodel= newService.save(newsmodel);
 	 mapper.writeValue(resp.getOutputStream(), newsmodel);
 	}
@@ -40,6 +44,8 @@ public class NewAPI  extends HttpServlet  {
 		resp.setContentType("application/json");
 		super.doPut(req, resp);
 		NewsModel updateNews =HttpUtil.of(req.getReader()).toModel(NewsModel.class);
+		UserModel usermodel = (UserModel) SessionUtil.getIntance().getValue(req, "USERMODEL");
+		updateNews.setModifiedBy(usermodel.getUserName());
 		updateNews=newService.update(updateNews);
 		mapper.writeValue(resp.getOutputStream(), updateNews);
 		

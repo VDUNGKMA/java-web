@@ -17,9 +17,14 @@ public class UserMapper implements IRowMapper<UserModel>{
 			user.setFullName(resultSet.getString("fullName"));
 			user.setPassword(resultSet.getString("password"));
 			user.setStatus(resultSet.getInt("status"));
-			RoleModel role =new RoleModel();
-			role.setCode(resultSet.getString("code"));
-			role.setName(resultSet.getString("name"));
+			try {
+				RoleModel role =new RoleModel();
+				role.setCode(resultSet.getString("code"));
+				role.setName(resultSet.getString("name"));
+				user.setRole(role);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			return user;
 		} catch (SQLException e) {
 			return null;
